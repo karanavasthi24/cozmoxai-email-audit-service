@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { simpleParser } from 'mailparser';
 import * as fs from 'fs';
-import { AppLoggerService } from 'src/utils/logger/winston-logger.service';
+import { AppLoggerService } from '../utils/logger/winston-logger.service';
 import { IParsedEmail } from './interfaces/parsed-email.interface';
 
 @Injectable()
