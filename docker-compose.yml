@@ -1,0 +1,13 @@
+
+services:
+  email-audit-service:
+    container_name: email-audit-container
+    image: email-audit-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
