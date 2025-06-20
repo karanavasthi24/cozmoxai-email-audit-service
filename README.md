@@ -1,4 +1,4 @@
-# 📬 Email Audit Service
+# Email Audit Service
 
 This service audits employee email communication quality using a dynamic rules engine. It accepts `.eml` files and provides structured feedback with scores and justifications for each rule (greeting, tone, clarity, etc.).
 
