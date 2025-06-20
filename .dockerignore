@@ -35,3 +35,4 @@ docker-compose.yaml
 
 node_modules
 dist
+test-data

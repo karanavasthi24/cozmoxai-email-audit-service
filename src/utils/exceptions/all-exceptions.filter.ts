@@ -1,3 +1,9 @@
+/**
+ * Global exception filter for handling all uncaught exceptions in the application.
+ *
+ * This filter catches all exceptions thrown by controllers or middleware,
+ * logs them using the application's logger, and returns a standardized error response.
+ */
 import {
 	ExceptionFilter,
 	Catch,
@@ -29,11 +35,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
 			reason: message
 		};
 
+		// Log error details and stack trace for auditing
 		this.logger.error(
 			`Exception thrown at ${request.method} ${request.url}`,
 			isHttp ? exception.stack : (exception as any)?.stack
 		);
 
+		// Send standardized error response
 		response.status(status).json(errorResponse);
 	}
 }

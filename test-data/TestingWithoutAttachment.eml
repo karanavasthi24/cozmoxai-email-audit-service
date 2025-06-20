@@ -1,0 +1,19 @@
+MIME-Version: 1.0
+Date: Fri, 20 Jun 2025 10:40:43 +0530
+Message-ID: <CAOw=v4a_2DC6ariam+7iTeJdMzBZEsjOJRU8DCkj=y7iD1jgfQ@mail.gmail.com>
+Subject: Testing without Attachment
+From: Karan Avasthi <karanavasthi98@gmail.com>
+To: Karan Avasthi <karanavasthi98@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000059e3720637f9e2fd"
+
+--00000000000059e3720637f9e2fd
+Content-Type: text/plain; charset="UTF-8"
+
+This goes without attachment.
+
+--00000000000059e3720637f9e2fd
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">This goes without attachment.</div>
+
+--00000000000059e3720637f9e2fd--

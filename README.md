@@ -9,8 +9,8 @@ This service audits employee email communication quality using a dynamic rules e
 - Upload `.eml` files via REST API
 - Parses subject, body (plain/HTML), and attachments
 - Audits based on configurable rule classes
--  Returns score + justification per rule
--  Logs to rotating files (info/error)
+- Returns score + justification per rule
+- Logs to rotating files (info/error)
 - Docker + Compose ready
 - Unit test coverage with Jest
 
@@ -86,6 +86,8 @@ curl -X POST http://localhost:3000/audit/upload \
   -F "file=@test-data/sample.eml"
 ```
 
+> **Note:** There is a `test-data` folder in the repository with sample `.eml` files you can use to try out the API.
+
 #### Success response:
 
 ```json
@@ -139,4 +141,5 @@ src/
   logger/       - Winston logger with rotation
 uploads/        - Mounted volume for uploaded files
 logs/           - Info + error logs (auto-created)
+test-data/      - Sample .eml files for testing the API
 ```

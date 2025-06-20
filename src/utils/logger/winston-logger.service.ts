@@ -1,3 +1,13 @@
+/**
+ * AppLoggerService
+ *
+ * Logger service Winston.
+ *
+ * - Logs to both console and daily-rotated log files (info and error levels)
+ * - Formats logs with timestamps and log levels
+ * - Integrates with NestJS LoggerService interface for dependency injection
+ * - Supports log rotation (max size, retention period)
+ */
 import { Injectable, LoggerService } from '@nestjs/common';
 import * as winston from 'winston';
 import 'winston-daily-rotate-file';
@@ -49,10 +59,19 @@ export class AppLoggerService implements LoggerService {
 		});
 	}
 
+	/**
+	 * Logs an informational message.
+	 * @param message The message to log
+	 */
 	log(message: string) {
 		this.logger.info(message);
 	}
 
+	/**
+	 * Logs an error message and optional stack trace.
+	 * @param message The error message
+	 * @param trace Optional stack trace
+	 */
 	error(message: string, trace = '') {
 		this.logger.error(message, { trace });
 	}

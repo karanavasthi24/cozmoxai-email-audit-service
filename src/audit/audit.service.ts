@@ -1,3 +1,9 @@
+/**
+ * AuditService
+ *
+ * Responsible for orchestrating the email audit process.
+ * Runs all rules on a parsed email, aggregates results, and generates a structured report.
+ */
 import { Injectable } from '@nestjs/common';
 import { RulesService } from '../rules/rules.service';
 import { IParsedEmail } from '../email/interfaces/parsed-email.interface';
@@ -11,6 +17,11 @@ export class AuditService {
 		private readonly logger: AppLoggerService
 	) {}
 
+	/**
+	 * Runs all audit rules on the provided email and returns a structured report.
+	 * @param email The parsed email to audit
+	 * @returns IAuditReport containing results, score, and summary
+	 */
 	generateReport(email: IParsedEmail): IAuditReport {
 		const { results, totalScore } = this.rulesService.auditEmail({
 			subject: email.subject,
@@ -33,7 +44,12 @@ export class AuditService {
 		return report;
 	}
 
-	private generateSummary(results): string {
+	/**
+	 * Generates a human-readable summary of the audit results.
+	 * @param results Array of rule results
+	 * @returns Summary string (e.g., "Passed 4 of 5 rules. 1 rule(s) need improvement.")
+	 */
+	private generateSummary(results: any[]): string {
 		const passed = results.filter(r => r.passed).length;
 		const failed = results.length - passed;
 		return `Passed ${passed} of ${results.length} rules. ${failed} rule(s) need improvement.`;

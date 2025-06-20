@@ -1,3 +1,9 @@
+/**
+ * EmailService
+ *
+ * Responsible for parsing .eml files and extracting structured email data.
+ * Integrates with mailparser and provides validation for attachments.
+ */
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { simpleParser } from 'mailparser';
 import * as fs from 'fs';
@@ -8,6 +14,13 @@ import { IParsedEmail } from './interfaces/parsed-email.interface';
 export class EmailService {
 	constructor(private readonly logger: AppLoggerService) {}
 
+	/**
+	 * Parses a .eml file and returns a structured IParsedEmail object.
+	 * Validates that at least one image attachment is present.
+	 * @param filePath The path to the .eml file
+	 * @returns Promise<IParsedEmail> with parsed and validated email data
+	 * @throws BadRequestException if parsing fails or validation fails
+	 */
 	async parseEmlFile(filePath: string): Promise<IParsedEmail> {
 		try {
 			const raw = fs.readFileSync(filePath);
@@ -51,7 +64,7 @@ export class EmailService {
 				`Failed to parse email: ${error.message}`,
 				error.stack
 			);
-			throw new BadRequestException('Failed to parse .eml file');
+			throw new BadRequestException(`Bad Request: ${error.message}`);
 		}
 	}
 }

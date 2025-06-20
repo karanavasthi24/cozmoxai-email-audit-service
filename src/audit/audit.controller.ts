@@ -1,3 +1,9 @@
+/**
+ * AuditController
+ *
+ * Exposes REST API endpoints for uploading and auditing emails.
+ * Handles file uploads, invokes email parsing and audit services, and returns structured results.
+ */
 import {
 	Controller,
 	Post,
@@ -14,12 +20,24 @@ import { AppLoggerService } from '../utils/logger/winston-logger.service';
 
 @Controller('audit')
 export class AuditController {
+	/**
+	 * Constructs the AuditController with required services.
+	 * @param logger Logger for logging and errors
+	 * @param emailService Service for parsing .eml files
+	 * @param auditService Service for running audit rules and generating reports
+	 */
 	constructor(
 		private readonly logger: AppLoggerService,
 		private readonly emailService: EmailService,
 		private readonly auditService: AuditService
 	) {}
 
+	/**
+	 * Handles file upload and triggers the audit process.
+	 * Expects a multipart/form-data request with the key 'file' containing a .eml file.
+	 * @param file The uploaded email file
+	 * @returns Structured audit report or error response
+	 */
 	@Post('upload')
 	@UseInterceptors(
 		FileInterceptor('file', {
